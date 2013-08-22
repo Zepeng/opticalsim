@@ -1,0 +1,8 @@
+BEGIN_PROLOG
+
+standard_chi2pidalg:
+{
+    TemplateFile:           "dedxrestemplates.root"
+}
+
+END_PROLOG

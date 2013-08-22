@@ -1,0 +1,10 @@
+BEGIN_PROLOG
+
+standard_textfilegen:
+{
+ module_type:   "TextFileGen"
+ InputFileName: "/lbne/data/users/zpli/geniecry_jul25_2013/vecfiles/genieNtp_20130423_lbne_lbneCD1_nuflux_numuflux_numu_g280_Ar40_5000_0.vec"   #name of file containing events in hepevt format to
+                              #put into simb::MCTruth objects for use in LArSoft
+}
+
+END_PROLOG 

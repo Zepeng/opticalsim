@@ -1,0 +1,9 @@
+#include "job/caldata.fcl"
+
+BEGIN_PROLOG
+
+argoneut_calwire: @local::t962_calwire
+
+argoneut_calwireana:   @local::standard_calwireana
+
+END_PROLOG

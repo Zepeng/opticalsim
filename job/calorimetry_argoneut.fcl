@@ -1,0 +1,28 @@
+#include "job/calorimetry.fcl"
+
+BEGIN_PROLOG
+
+argoneut_calorimetryalgdata:	@local::standard_calorimetryalgdata
+argoneut_calorimetryalgmc:	@local::standard_calorimetryalgmc
+
+argoneut_calodata:
+{
+ module_type:            "Calorimetry"
+ TrackModuleLabel:       "track3d"
+ HitsModuleLabel:        "ffthit"
+ MakeTree:               false
+ UseArea:		 false
+ CaloAlg:	         @local::argoneut_calorimetryalgdata
+}
+
+argoneut_calomc:
+{
+ module_type:            "Calorimetry"
+ TrackModuleLabel:       "track3d"
+ HitsModuleLabel:        "ffthit"
+ MakeTree:               false
+ UseArea:		 false
+ CaloAlg:	         @local::argoneut_calorimetryalgmc
+}
+
+END_PROLOG

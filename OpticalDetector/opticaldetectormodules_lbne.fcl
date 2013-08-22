@@ -1,0 +1,61 @@
+#include "job/opticaldetectormodules.fcl"
+
+BEGIN_PROLOG
+
+lbne10kt_opdigi:
+{
+  module_type:        "LBNE10ktOpMCDigi"
+  InputModule:        "largeant"
+  QE:                      1
+  SaturationScale:         50000
+  DarkRate:                0 #10000
+}
+
+lbne10kt_simphotoncounter:
+{
+  module_type:            "LBNE10ktSimPhotonCounter"
+  Verbosity:               0
+  InputModule:            "largeant"
+  MakeAllPhotonsTree:      true
+  MakeDetectedPhotonsTree: true
+  MakeOpDetsTree:          true
+  MakeOpDetEventsTree:     true
+  QuantumEfficiency:       1
+  WavelengthCutLow:        0
+  WavelengthCutHigh:       10000
+}
+
+lbne10kt_tracktimeassoc:   @local::standard_tracktimeassoc
+lbne10kt_opflashnew:       @local::standard_opflashnew
+
+lbne10kt_opdigiana:        @local::standard_opdigiana
+lbne10kt_ophitana:         @local::standard_ophitana
+lbne10kt_opflashana:       @local::standard_opflashana
+
+
+
+
+lbne34kt_simphotoncounter: @local::standard_simphotoncounter
+lbne34kt_opdigi:           @local::standard_opdigi
+lbne34kt_tracktimeassoc:   @local::standard_tracktimeassoc
+lbne34kt_opflashnew:       @local::standard_opflashnew
+
+lbne34kt_opdigiana:        @local::standard_opdigiana
+lbne34kt_ophitana:         @local::standard_ophitana
+lbne34kt_opflashana:       @local::standard_opflashana
+
+
+
+
+lbne35t_simphotoncounter: @local::standard_simphotoncounter
+lbne35t_opdigi:           @local::standard_opdigi
+lbne35t_tracktimeassoc:   @local::standard_tracktimeassoc
+lbne35t_opflashnew:       @local::standard_opflashnew
+
+lbne35t_opdigiana:        @local::standard_opdigiana
+lbne35t_ophitana:         @local::standard_ophitana
+lbne35t_opflashana:       @local::standard_opflashana
+
+
+
+END_PROLOG

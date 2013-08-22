@@ -1,0 +1,35 @@
+#include "job/hitfindermodules.fcl"
+
+BEGIN_PROLOG
+
+
+standard_disambigcheat:
+{
+ module_type:         "DisambigCheater"
+ ChanHitLabel:        "gaushit"
+}
+
+
+lbne10kt_hitfinder:       @local::standard_hitfinder
+lbne10kt_gaushitfinder:   @local::gaus_hitfinder
+lbne10kt_gaushitfinder.IndMinWidth: 1.0
+lbne10kt_gaushitfinder.ColMinWidth: 1.0
+
+
+
+lbne34kt_hitfinder:       @local::standard_hitfinder
+lbne34kt_gaushitfinder:   @local::gaus_hitfinder
+lbne34kt_gaushitfinder.IndMinWidth: 1.0
+lbne34kt_gaushitfinder.ColMinWidth: 1.0
+
+
+
+lbne35t_hitfinder:        @local::standard_hitfinder
+lbne35t_gaushitfinder:    @local::gaus_hitfinder
+lbne35t_gaushitfinder.IndMinWidth: 1.0
+lbne35t_gaushitfinder.ColMinWidth: 1.0
+
+
+
+
+END_PROLOG

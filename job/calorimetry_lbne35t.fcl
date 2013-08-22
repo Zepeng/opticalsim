@@ -1,0 +1,26 @@
+#include "job/calorimetry.fcl"
+
+BEGIN_PROLOG
+
+lbne35t_calorimetryalgdata:	@local::standard_calorimetryalgdata
+lbne35t_calorimetryalgmc:	@local::standard_calorimetryalgmc
+
+lbne35t_calodata:
+{
+ module_type:            "Calorimetry"
+ TrackModuleLabel:       "track3d"
+ HitsModuleLabel:        "ffthit"
+ UseArea:		 false
+ CaloAlg:	         @local::lbne35t_calorimetryalgdata
+}
+
+lbne35t_calomc:
+{
+ module_type:            "Calorimetry"
+ TrackModuleLabel:       "track3d"
+ HitsModuleLabel:        "ffthit"
+ UseArea:		 false
+ CaloAlg:	         @local::lbne35t_calorimetryalgmc
+}
+
+END_PROLOG

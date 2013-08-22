@@ -1,0 +1,30 @@
+BEGIN_PROLOG
+
+
+standard_shower:
+{
+ module_type:              "ShowerReco"
+ ClusterModuleLabel:       "showeranglecluster"
+ VertexClusterModuleLabel: "linemerger" 
+ CaloAlg:            	   @local::standard_calorimetryalgmc
+}
+
+
+
+standard_showercheater:
+{
+ module_type:         "ShowerCheater"
+ CheatedClusterLabel: "cluster"
+ G4ModuleLabel:       "largeant"
+}
+
+argoneut_shower:     @local::standard_shower
+
+microboone_shower:   @local::standard_shower 
+
+
+
+
+
+
+END_PROLOG

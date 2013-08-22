@@ -1,0 +1,18 @@
+#include "job/opticaldetectorservices.fcl"
+
+BEGIN_PROLOG
+
+
+lbne10kt_opdigiproperties:           @local::standard_opdigiproperties
+lbne10kt_opdigiproperties.WaveformFile: "OpticalDetector/sensl_1.dat"
+lbne10kt_opdigiproperties.UseEmpiricalShape: true
+lbne10kt_opdigiproperties_3windows:  @local::standard_opdigiproperties_3windows
+
+lbne34kt_opdigiproperties:           @local::standard_opdigiproperties
+lbne34kt_opdigiproperties_3windows:  @local::standard_opdigiproperties_3windows
+
+lbne35t_opdigiproperties:           @local::standard_opdigiproperties
+lbne35t_opdigiproperties_3windows:  @local::standard_opdigiproperties_3windows
+
+
+END_PROLOG

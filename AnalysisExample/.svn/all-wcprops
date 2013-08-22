@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/subversion/larsoftsvn/!svn/ver/4251/trunk/AnalysisExample
+END
+rename.sh
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/subversion/larsoftsvn/!svn/ver/3304/trunk/AnalysisExample/rename.sh
+END
+AnalysisExample.fcl
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/subversion/larsoftsvn/!svn/ver/3663/trunk/AnalysisExample/AnalysisExample.fcl
+END
+GNUmakefile
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/subversion/larsoftsvn/!svn/ver/4251/trunk/AnalysisExample/GNUmakefile
+END
+AnalysisExample_module.cc
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/subversion/larsoftsvn/!svn/ver/4028/trunk/AnalysisExample/AnalysisExample_module.cc
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/subversion/larsoftsvn/!svn/ver/3663/trunk/AnalysisExample/README.txt
+END
+ADDITIONAL_NOTES.txt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/subversion/larsoftsvn/!svn/ver/3663/trunk/AnalysisExample/ADDITIONAL_NOTES.txt
+END

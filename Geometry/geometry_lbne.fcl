@@ -1,0 +1,31 @@
+BEGIN_PROLOG
+
+lbne10kt_geo:
+{
+ SurfaceY: 0.0e2                         #in cm, vertical distance to the surface
+ Name:     "lbne10kt"
+ GDML:     "Geometry/gdml/lbne10kt.gdml"
+ ROOT:     "Geometry/gdml/lbne10kt.gdml"
+ DisableWiresInG4: true
+}
+ 
+lbne34kt_geo:
+{
+ SurfaceY: 147828                        # in cm, vertical distance to the surface
+                                         # 4850 feet to cm. from DocDb-3833
+ Name:     "lbne34kt"
+ GDML:     "Geometry/gdml/lbne34kt.gdml"
+ ROOT:     "Geometry/gdml/lbne34kt.gdml"
+ DisableWiresInG4: true
+}
+ 
+lbne35t_geo:
+{
+ SurfaceY: 0.0e2                         #in cm, vertical distance to the surface
+ Name:     "lbne35t"
+ GDML:     "Geometry/gdml/lbne35t.gdml"
+ ROOT:     "Geometry/gdml/lbne35t.gdml"
+ DisableWiresInG4: true
+}
+
+END_PROLOG

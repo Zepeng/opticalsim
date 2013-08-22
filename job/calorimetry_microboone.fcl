@@ -1,0 +1,41 @@
+#include "job/calorimetry.fcl"
+
+BEGIN_PROLOG
+
+microboone_calorimetryalgdata:	@local::standard_calorimetryalgdata
+microboone_calorimetryalgmc:	@local::standard_calorimetryalgmc
+
+microboone_calorimetryalgmc.CalAmpConstants: [ 6.8906513e-3, 6.8906513e-3,6.8906513e-3 ] # Temporarily leaving all
+# planes same. Will need to change after calibration is done.
+
+microboone_calodata:
+{
+ module_type:            "Calorimetry"
+ TrackModuleLabel:       "track3d"
+ HitsModuleLabel:        "ffthit"
+ UseArea:		 false
+ CaloAlg:	         @local::microboone_calorimetryalgdata
+}
+
+microboone_calomc:
+{
+ module_type:            "Calorimetry"
+ TrackModuleLabel:       "track3d"
+ HitsModuleLabel:        "ffthit"
+ UseArea:		 false
+ CaloAlg:	         @local::microboone_calorimetryalgmc
+}
+
+microboone_generalcalomc:
+{
+ module_type:            "GeneralCalorimetry"
+ TrackModuleLabel:       "track3d"
+ CaloAlg:	         @local::microboone_calorimetryalgmc
+}
+
+microboone_beziercalorimetry:         @local::standard_beziercalorimetry
+microboone_beziercalorimetry.CaloAlg: @local::microboone_calorimetryalgmc
+
+
+
+END_PROLOG

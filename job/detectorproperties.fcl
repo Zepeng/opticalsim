@@ -1,0 +1,83 @@
+BEGIN_PROLOG
+
+standard_detproperties :
+{
+ SamplingRate:      198.         # in ns         
+ TriggerOffset:     60           # in clock ticks
+ ElectronsToADC:    1.208041e-3  # in ADC/e; 6241.5 electrons = 1fC = 7.54 ADC counts for ArgoNeuT
+ NumberTimeSamples: 2048         # ticks of the clock per readout frame
+ TimeOffsetU:       -5.193
+ TimeOffsetV:       0.585
+ TimeOffsetZ:       0
+ ReadOutWindowSize: 2048
+}
+
+# be sure to make the necessary changes when microboone and
+# lbne have different electronics simulations from argoneut
+
+argoneut_detproperties:   @local::standard_detproperties
+
+jp250L_detproperties:                   @local::standard_detproperties
+jp250L_detproperties.NumberTimeSamples: 4096
+jp250L_detproperties.ReadOutWindowSize: 4096
+jp250L_detproperties.TimeOffsetU: 0
+jp250L_detproperties.TimeOffsetV: 0
+jp250L_detproperties.TimeOffsetZ: 0
+
+bo_detproperties:             @local::standard_detproperties
+#  comment the next three lines for Short-Bo data
+bo_detproperties.SamplingRate:      395.5        # in ns         
+bo_detproperties.NumberTimeSamples: 4096         # ticks of the clock per readout frame
+bo_detproperties.ReadOutWindowSize: 4096
+bo_detproperties.TriggerOffset:     101          # 40 us
+bo_detproperties.TimeOffsetU: -16.4
+bo_detproperties.TimeOffsetV: -6.2
+bo_detproperties.TimeOffsetZ: 0
+
+microboone_detproperties:                   @local::standard_detproperties
+microboone_detproperties.SamplingRate:      500.         #in ns  
+microboone_detproperties.TriggerOffset:     0            # in clock ticks
+microboone_detproperties.ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for MicroBooNE  
+microboone_detproperties.NumberTimeSamples: 3200
+microboone_detproperties.TimeOffsetU:       0.
+microboone_detproperties.TimeOffsetV:       0.
+microboone_detproperties.TimeOffsetZ:       0.
+microboone_detproperties.ReadOutWindowSize: 3200
+microboone_detproperties.InheritTriggerOffset:     true
+microboone_detproperties.InheritNumberTimeSamples: true
+
+microboone_detproperties_3windows:                   @local::microboone_detproperties
+microboone_detproperties_3windows.NumberTimeSamples: 9600         
+
+
+
+lbne10kt_detproperties:                   @local::standard_detproperties
+lbne10kt_detproperties.SamplingRate:	  500.         #in ns
+lbne10kt_detproperties.ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for LBNE 10kt
+lbne10kt_detproperties.NumberTimeSamples: 3200
+lbne10kt_detproperties.ReadOutWindowSize: 3200
+lbne10kt_detproperties.TimeOffsetU:	  -10.
+lbne10kt_detproperties.TimeOffsetV:	  -5.
+lbne10kt_detproperties.TimeOffsetZ:	  0.
+
+lbne34kt_detproperties:                   @local::standard_detproperties
+lbne34kt_detproperties.SamplingRate:	  500.         #in ns
+lbne34kt_detproperties.ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for LBNE 10kt
+lbne34kt_detproperties.NumberTimeSamples: 3200
+lbne34kt_detproperties.ReadOutWindowSize: 3200
+lbne34kt_detproperties.TimeOffsetU:	  -10.
+lbne34kt_detproperties.TimeOffsetV:	  -5.
+lbne34kt_detproperties.TimeOffsetZ:	  0.
+
+lbne35t_detproperties:                   @local::standard_detproperties
+lbne35t_detproperties.SamplingRate:	 500.         #in ns
+lbne35t_detproperties.ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for LBNE 35t
+lbne35t_detproperties.NumberTimeSamples: 3200
+lbne35t_detproperties.ReadOutWindowSize: 3200
+lbne35t_detproperties.TimeOffsetU:	 -10.
+lbne35t_detproperties.TimeOffsetV:	 -5.
+lbne35t_detproperties.TimeOffsetZ:	 0.
+
+
+
+END_PROLOG

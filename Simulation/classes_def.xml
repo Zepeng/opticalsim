@@ -1,0 +1,54 @@
+<!--                                                                                  -->
+<!--  $Id: classes_def.xml,v 1.10 2010/04/12 18:12:28  Exp $                          -->
+<!--  $Author:  $                                                                     -->
+<!--  $Date: 2010/04/12 18:12:28 $                                                    -->
+<!--                                                                                  -->
+<!--  Include art::Wrapper lines for objects that we would like to put into the event -->
+<!--  Include the non-wrapper lines for all objects on the art::Wrapper lines and     -->
+<!--  for all objects that are data members of those objects.                         -->
+
+
+<lcgdict>
+ <!--Remove the following objects as they are not written to any files
+ <class name="sim::LArVoxelID"               ClassVersion="11"                   />
+ <class name="sim::LArVoxelData"             ClassVersion="11"              	 />
+ <class name="util::VectorMap<int,double,std::less<int> >"                  	 />
+ <class name="util::VectorMap<int,double,std::less<int> >::value_compare">	   
+  <field name="comp" transient="true"                                       	 />
+ </class>									   
+ <class name="std::pair<int,double>"                                             />
+ <class name="std::vector< std::pair<int,double> >"                         	 />
+ -->
+ <class name="sim::OnePhoton"                ClassVersion="11"                   />
+ <class name="std::vector<sim::OnePhoton>"                                       />
+ <class name="sim::LBNE10ktPhotons"                                              />
+ <class name="std::vector<sim::LBNE10ktPhotons>"                                 />
+ <class name="sim::SimPhotons"               ClassVersion="12"              	 />
+ <class name="sim::SimChannel"               ClassVersion="14"              	 />
+ <class name="std::vector<int>"                                             	 />
+ <class name="sim::IDE"                      ClassVersion="10"                   />
+ <class name="std::vector<sim::IDE>"                                        	 />
+ <class name="std::pair<unsigned short, std::vector<sim::IDE> >"            	 />
+ <class name="std::map<unsigned short, std::vector<sim::IDE> >"             	 />
+ <class name="std::vector<sim::SimPhotons  >" 		     		    	 />
+ <class name="std::vector<sim::SimChannel  >"                		    	 />
+ <class name="art::Wrapper< std::vector<int>               >"		         />
+ <class name="art::Wrapper< std::vector<sim::SimPhotons>   >"		    	 />
+ <class name="art::Wrapper< std::vector<sim::LBNE10ktPhotons>   >"                />
+ <class name="art::Wrapper< std::vector<sim::SimChannel>   >"		    	 />
+
+ <class name="sim::BeamGateInfo"             ClassVersion="10"              	 />
+ <class name="std::vector<sim::BeamGateInfo>" 	    		    	         />
+ <class name="art::Wrapper< std::vector<sim::BeamGateInfo> >"		    	 />
+
+ <ioread 
+    version="[-13]" 
+    sourceClass="sim::SimChannel" 
+    source="unsigned short fChannel" 
+    targetClass="sim::SimChannel" 
+    target="fChannel" 
+    include="SimChannel.h">
+    <![CDATA[fChannel = onfile.fChannel;]]>
+</ioread> 
+
+</lcgdict>

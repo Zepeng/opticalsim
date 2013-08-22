@@ -1,0 +1,69 @@
+#include "job/services_lbne.fcl"
+#include "job/opticaldetectormodules_lbne.fcl"
+#include "job/largeantmodules_lbne.fcl"
+#include "job/detsimmodules_lbne.fcl"
+
+
+process_name: OpMCDigi
+
+services:
+{
+  # Load the service that manages root files for histograms.
+
+  TFileService: { fileName: "OpMCDigi_hist.root" }
+  Timing:       {}
+  RandomNumberGenerator: {} 
+  user:         @local::lbne10kt_optical_services
+}
+#lbne10kt_optical_services.OpDigiProperties:         @local::microboone_opdigiproperties
+
+# The 'source' section tells the script to expect an input file with art::Event records.
+# Note that the name of the input file is not included here. You specify that on the
+# command line when you run this script; e.g.,
+#    lar -c OpMCDigi.fcl -s myinput.root
+# The file "myinput.root" is assumed to have been created by a previous LArSoft
+# job; e.g. ${SRT_PUBLIC_CONTEXT}/job/standard_reco.fcl
+
+source:
+{
+  module_type: RootInput
+  maxEvents:  -1 
+}
+
+# The 'physics' section defines and configures some modules to do work on each event.
+# First modules are defined; they are scheduled later. Modules are grouped by type.
+physics:
+{
+  producers:
+  {
+      opdigi: @local::lbne10kt_opdigi
+      #opflashnew: @local::lbne10kt_opflashnew
+  }
+  analyzers:
+  {
+      opdigiana: @local::lbne10kt_opdigiana
+      #opflashana: @local::lbne10kt_opflashana
+  }
+
+  digi: [ opdigi]
+  analyzeIt: [  opdigiana ]
+
+  # "end_paths" is a keyword and contains the modules that do not modify the art::Event;
+  # i.e., analyzers and output streams. 
+  trigger_paths: [ digi ]
+  stream1: [ out1 ]
+
+  end_paths: [ analyzeIt ,stream1] 
+
+}
+#lbne10kt_opdigiana.MakeBipolarHist: true
+#lbne10kt_opdigiana.MakeUnipolarHist:false
+
+outputs:
+{
+  out1:
+  {
+    module_type: RootOutput
+    fileName: "OpMCDigi.root"
+  }
+}

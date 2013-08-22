@@ -1,0 +1,13 @@
+#include "job/databaseutil.fcl"
+
+BEGIN_PROLOG
+
+argoneut_database:               @local::standard_database
+argoneut_database.DBName:	 "argoneut_dev"
+argoneut_database.DBUser:	 "argoneut_reader"
+argoneut_database.Port:		 5457
+argoneut_database.PassFileName:	 ".apswd"
+argoneut_database.ShouldConnect: true
+
+
+END_PROLOG

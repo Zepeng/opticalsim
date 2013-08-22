@@ -1,0 +1,37 @@
+#include "job/services.fcl"
+#include "job/geometry_bo.fcl"
+#include "job/detectorproperties_bo.fcl"
+#include "job/larproperties.fcl"
+#include "job/larfft_bo.fcl"
+#include "job/messageservice.fcl"
+#include "job/simulationservices_bo.fcl"
+#include "magfield.fcl"
+#include "job/databaseutil_bo.fcl"
+#include "job/backtracker.fcl"
+
+BEGIN_PROLOG
+
+bo_services:
+{
+ Geometry:           @local::bo_geo 	       
+ DetectorProperties: @local::bo_detproperties
+ LArProperties:      @local::bo_properties	       
+ LArFFT:             @local::bo_larfft  	       
+ DatabaseUtil:	     @local::bo_database    
+}
+
+bo_simulation_services:
+{
+ LArG4Parameters:    @local::bo_largeantparameters
+ LArVoxelCalculator: @local::bo_larvoxelcalculator
+ MagneticField:      @local::no_mag
+ Geometry:           @local::bo_geo          
+ DetectorProperties: @local::bo_detproperties
+ LArProperties:      @local::bo_properties            
+ LArFFT:             @local::bo_larfft      
+ DatabaseUtil:	     @local::bo_database    
+ BackTracker:        @local::bo_backtracker  
+}
+
+
+END_PROLOG

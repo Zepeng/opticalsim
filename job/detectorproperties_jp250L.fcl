@@ -1,0 +1,12 @@
+#include "job/detectorproperties.fcl"
+
+BEGIN_PROLOG
+
+jp250L_detproperties:                   @local::standard_detproperties
+jp250L_detproperties.NumberTimeSamples: 4096
+jp250L_detproperties.ReadOutWindowSize: 4096
+jp250L_detproperties.TimeOffsetU: 0
+jp250L_detproperties.TimeOffsetV: 0
+jp250L_detproperties.TimeOffsetZ: 0
+
+END_PROLOG

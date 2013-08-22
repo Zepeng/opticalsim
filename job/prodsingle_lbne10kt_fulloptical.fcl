@@ -1,0 +1,88 @@
+#include "job/services_lbne.fcl"
+#include "job/singles_lbne.fcl"
+#include "job/largeantmodules_lbne.fcl"
+#include "job/detsimmodules_lbne.fcl"
+#include "job/mccheatermodules.fcl"
+#include "job/photpropservices_lbne.fcl"
+#include "job/opticaldetectormodules_lbne.fcl"
+
+process_name: SinglesGen
+
+services:
+{
+  # Load the service that manages root files for histograms.
+  TFileService: { fileName: "single_hist_lbne10kt.root" }
+  Timing:       {}
+  RandomNumberGenerator: {} #ART native random number generator
+  user:         @local::lbne10kt_simulation_services
+}
+services.user.PhotonVisibilityService: @local::standard_photonvisibilityservice
+
+#Start each new event with an empty event.
+source:
+{
+  module_type: EmptyEvent
+  maxEvents:   5        # Number of events to create
+  firstRun:    1           # Run number to use for this file
+  firstEvent:  1           # number of first event in the file
+}
+
+# Define and configure some modules to do work on each event.
+# First modules are defined; they are scheduled later.
+# Modules are grouped by type.
+physics:
+{
+
+ producers:
+ {
+   generator: @local::lbne10kt_singlep	  
+   largeant:  @local::lbne10kt_largeant	  
+   daq:       @local::lbne10kt_simwire  
+   backtrack: @local::standard_backtrackerloader
+ }
+
+ analyzers:
+ {
+   largana:   @local::lbne10kt_largeantana
+   pmtresponse: @local::lbne10kt_simphotoncounter
+ }
+
+ simulate: [ generator, largeant, daq, backtrack ] 
+ analyzeIt:  [ largana, pmtresponse ]
+ stream1:  [ out1 ]
+
+ trigger_paths: [simulate] 
+
+ end_paths:     [analyzeIt, stream1]  
+}
+
+outputs:
+{
+ out1:
+ {
+   module_type: RootOutput
+   fileName:    "single_gen_lbne10kt.root" #default file name, can override from command line with -o or --output
+ }
+}
+
+# set quantum efficiency supressed scint yield to 0.03 * 24000
+services.user.LArProperties.ScintYield: 720
+
+# enable optical physics in LArG4
+services.user.LArG4Parameters.EnabledPhysics: [ "Em",
+                                                "Optical",
+                                                "SynchrotronAndGN",
+                                                "Ion",
+                                                "Hadron",
+                                                "Decay",
+                                                "HadronElastic",
+                                                "Stopping",
+                                                "NeutronTrackingCut" ]
+
+# enable this custom physics list
+services.user.LArG4Parameters.UseCustomPhysics: true
+
+# disable cerenkov light
+services.user.LArProperties.EnableCerenkovLight: true
+
+

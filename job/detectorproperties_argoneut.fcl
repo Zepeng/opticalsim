@@ -1,0 +1,10 @@
+#include "job/detectorproperties.fcl"
+
+BEGIN_PROLOG
+
+# be sure to make the necessary changes when microboone and
+# lbne have different electronics simulations from argoneut
+
+argoneut_detproperties:   @local::standard_detproperties
+
+END_PROLOG

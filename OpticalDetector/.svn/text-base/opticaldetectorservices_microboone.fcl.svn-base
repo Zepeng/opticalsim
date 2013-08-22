@@ -1,0 +1,7 @@
+#include "job/opticaldetectorservices.fcl"
+
+BEGIN_PROLOG
+
+microboone_opdigiproperties:  @local::standard_opdigiproperties
+
+END_PROLOG

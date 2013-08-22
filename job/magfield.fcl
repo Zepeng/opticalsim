@@ -1,0 +1,10 @@
+BEGIN_PROLOG
+
+no_mag:
+{
+    UseField:         false
+    ConstantField:    [ 0.0, 0.0, 0.0 ]
+    MagnetizedVolume: "vWorld"
+}
+
+END_PROLOG

@@ -1,0 +1,7 @@
+#include "job/databaseutil.fcl"
+
+BEGIN_PROLOG
+
+jp250L_database: @local::standard_database
+
+END_PROLOG

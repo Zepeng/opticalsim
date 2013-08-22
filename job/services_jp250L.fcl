@@ -1,0 +1,39 @@
+#include "job/services.fcl"
+#include "job/geometry_jp250L.fcl"
+#include "job/detectorproperties_jp250L.fcl"
+#include "job/larproperties.fcl"
+#include "job/larfft_jp250L.fcl"
+#include "job/messageservice.fcl"
+#include "job/simulationservices_jp250L.fcl"
+#include "job/signalservices_jp250L.fcl"
+#include "magfield.fcl"
+#include "job/databaseutil_jp250L.fcl"
+#include "job/backtracker.fcl"
+
+BEGIN_PROLOG
+
+jp250L_services:
+{
+ Geometry:                       @local::jp250L_geo 	       
+ DetectorProperties:             @local::jp250L_detproperties 
+ LArProperties:                  @local::jp250L_properties	  
+ LArFFT:                         @local::jp250L_larfft  	  
+ DatabaseUtil:	                 @local::jp250L_database      
+ SignalShapingServiceMicroBooNE: @local::microboone_signalshapingservice
+}
+
+jp250L_simulation_services:
+{
+ LArG4Parameters:                @local::jp250L_largeantparameters 
+ LArVoxelCalculator:             @local::jp250L_larvoxelcalculator 
+ MagneticField:                  @local::no_mag                    
+ Geometry:                       @local::jp250L_geo                
+ DetectorProperties:             @local::jp250L_detproperties      
+ LArProperties:                  @local::jp250L_properties         
+ LArFFT:                         @local::jp250L_larfft             
+ DatabaseUtil:	                 @local::jp250L_database           
+ BackTracker:                    @local::jp250L_backtracker        
+ SignalShapingServiceMicroBooNE: @local::microboone_signalshapingservice
+}
+
+END_PROLOG

@@ -1,0 +1,160 @@
+#include "job/geometry.fcl"
+#include "job/detectorproperties.fcl"
+#include "job/larproperties.fcl"
+#include "job/larfft.fcl"
+#include "job/messageservice.fcl"
+#include "job/simulationservices.fcl"
+#include "job/signalservices.fcl"
+#include "magfield.fcl"
+#include "job/databaseutil.fcl"
+#include "job/backtracker.fcl"
+#include "job/photpropservices.fcl"
+#include "job/opticaldetectorservices.fcl"
+
+BEGIN_PROLOG
+
+jp250L_services:
+{
+ Geometry:                       @local::jp250L_geo 	       
+ DetectorProperties:             @local::jp250L_detproperties
+ LArProperties:                  @local::jp250L_properties	 
+ LArFFT:                         @local::jp250L_larfft  	 
+ DatabaseUtil:	                 @local::jp250L_database     
+ SignalShapingServiceMicroBooNE: @local::microboone_signalshapingservice
+}
+
+jp250L_simulation_services:
+{
+ LArG4Parameters:                @local::jp250L_largeantparameters 
+ LArVoxelCalculator:             @local::jp250L_larvoxelcalculator 
+ MagneticField:                  @local::no_mag                    
+ Geometry:                       @local::jp250L_geo                
+ DetectorProperties:             @local::jp250L_detproperties      
+ LArProperties:                  @local::jp250L_properties         
+ LArFFT:                         @local::jp250L_larfft             
+ DatabaseUtil:	                 @local::jp250L_database           
+ BackTracker:                    @local::jp250L_backtracker        
+ SignalShapingServiceMicroBooNE: @local::microboone_signalshapingservice
+}
+
+
+csu40L_services:
+{
+ Geometry:                       @local::csu40L_geo 	       
+ DetectorProperties:             @local::standard_detproperties
+ LArProperties:                  @local::standard_properties	 
+ LArFFT:                         @local::standard_larfft  	 
+ DatabaseUtil:	                 @local::standard_database     
+}
+
+csu40L_simulation_services:
+{
+ LArG4Parameters:                @local::standard_largeantparameters 
+ LArVoxelCalculator:             @local::standard_larvoxelcalculator 
+ MagneticField:                  @local::no_mag                    
+ Geometry:                       @local::csu40L_geo                
+ DetectorProperties:             @local::standard_detproperties      
+ LArProperties:                  @local::standard_properties         
+ LArFFT:                         @local::standard_larfft             
+ DatabaseUtil:	                 @local::standard_database           
+ BackTracker:                    @local::standard_backtracker        
+}
+
+
+bo_services:
+{
+ Geometry:           @local::bo_geo 	       
+ DetectorProperties: @local::bo_detproperties
+ LArProperties:      @local::bo_properties	       
+ LArFFT:             @local::bo_larfft  	       
+ DatabaseUtil:	     @local::bo_database    
+}
+
+bo_simulation_services:
+{
+ LArG4Parameters:    @local::bo_largeantparameters
+ LArVoxelCalculator: @local::bo_larvoxelcalculator
+ MagneticField:      @local::no_mag
+ Geometry:           @local::bo_geo          
+ DetectorProperties: @local::bo_detproperties
+ LArProperties:      @local::bo_properties            
+ LArFFT:             @local::bo_larfft      
+ DatabaseUtil:	     @local::bo_database    
+ BackTracker:        @local::bo_backtracker  
+}
+
+argoneut_services:
+{
+ Geometry:           @local::argoneut_geo 	       
+ DetectorProperties: @local::argoneut_detproperties
+ LArProperties:      @local::argoneut_properties	       
+ LArFFT:             @local::argoneut_larfft  	     
+ DatabaseUtil:	     @local::argoneut_database    
+ BackTracker:        @local::argoneut_backtracker  
+}
+
+argoneut_simulation_services:
+{
+ LArG4Parameters:    @local::argoneut_largeantparameters
+ LArVoxelCalculator: @local::argoneut_larvoxelcalculator
+ MagneticField:      @local::no_mag
+ Geometry:           @local::argoneut_geo          
+ DetectorProperties: @local::argoneut_detproperties
+ LArProperties:      @local::argoneut_properties            
+ LArFFT:             @local::argoneut_larfft         
+ DatabaseUtil:	     @local::argoneut_database    
+ BackTracker:        @local::argoneut_backtracker  
+}
+
+microboone_services:
+{
+ Geometry:                       @local::microboone_geo 	       
+ DetectorProperties:             @local::microboone_detproperties 
+ LArProperties:                  @local::microboone_properties    
+ LArFFT:                         @local::microboone_larfft        
+ DatabaseUtil:	                 @local::microboone_database      
+ SignalShapingServiceMicroBooNE: @local::microboone_signalshapingservice
+ BackTracker:                    @local::microboone_backtracker  
+}
+
+microboone_optical_services:                          @local::microboone_services
+microboone_optical_services.OpDigiProperties:         @local::microboone_opdigiproperties 
+
+microboone_simulation_services:
+{
+ LArG4Parameters:                @local::microboone_largeantparameters 
+ LArVoxelCalculator:             @local::microboone_larvoxelcalculator 
+ Geometry:                       @local::microboone_geo 	           
+ DetectorProperties:             @local::microboone_detproperties      
+ LArProperties:                  @local::microboone_properties	   
+ LArFFT:                         @local::microboone_larfft             
+ DatabaseUtil:	                 @local::microboone_database           
+ SignalShapingServiceMicroBooNE: @local::microboone_signalshapingservice
+ MagneticField:                  @local::no_mag 	       
+ BackTracker:                    @local::microboone_backtracker  
+}
+
+microboone_optical_simulation_services:                          @local::microboone_simulation_services
+microboone_optical_simulation_services.PhotonVisibilityService:  @local::microboone_photonvisibilityservice
+microboone_optical_simulation_services.OpDigiProperties:         @local::microboone_opdigiproperties 
+microboone_optical_simulation_services.LArProperties.ScintYield: 24000
+microboone_optical_simulation_services.LArProperties.EnableCerenkovLight: false
+microboone_optical_simulation_services.LArG4Parameters.UseCustomPhysics: true
+microboone_optical_simulation_services.LArG4Parameters.EnabledPhysics: [ "Em",
+                                                                         "FastOptical",
+                                                                         "SynchrotronAndGN",
+                                                                         "Ion",
+                                                                         "Hadron",
+                                                                         "Decay",
+                                                                         "HadronElastic",
+                                                                         "Stopping",
+                                                                         "NeutronTrackingCut" ]
+
+
+microboone_services_3windows:                               @local::microboone_services
+microboone_services_3windows.DetectorProperties:            @local::microboone_detproperties_3windows
+microboone_simulation_services_3windows:                    @local::microboone_simulation_services
+microboone_simulation_services_3windows.DetectorProperties: @local::microboone_detproperties_3windows
+
+
+END_PROLOG

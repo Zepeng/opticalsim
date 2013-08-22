@@ -1,0 +1,7 @@
+#include "job/larfft.fcl"
+
+BEGIN_PROLOG
+
+argoneut_larfft:   @local::standard_larfft
+
+END_PROLOG

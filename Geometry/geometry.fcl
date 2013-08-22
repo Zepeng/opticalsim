@@ -1,0 +1,80 @@
+BEGIN_PROLOG
+
+bo_geo:
+{
+ SurfaceY: 2.0e2                   #in cm, vertical distance to the surface
+ Name:     "bo"
+ GDML:     "Geometry/gdml/longbo.gdml"
+ ROOT:     "Geometry/gdml/longbo.gdml"
+}
+
+jp250L_geo:
+{
+ SurfaceY: 1.0e2                   #in cm, vertical distance to the surface
+ Name:     "jp250l"
+ GDML:     "Geometry/gdml/jp250L.gdml"
+ ROOT:     "Geometry/gdml/jp250L.gdml"
+}
+
+argoneut_geo:
+{
+ SurfaceY: 130.0e2                      #in cm, vertical distance to the surface
+ Name:     "argoneut"
+ GDML:     "Geometry/gdml/argoneut.gdml"
+ ROOT:     "Geometry/gdml/argoneut.gdml"
+}
+
+microboone_geo:
+{
+ SurfaceY:        2.0e2                           #in cm, vertical distance to the surface
+ Name:            "microboone"
+ GDML:            "Geometry/gdml/microboone.gdml"
+ ROOT:            "Geometry/gdml/microboone.gdml"
+ DisableWiresInG4: true                           # Whether to use wirefree geometry in LArG4
+                                                  #  As per Brians request, wire free file is specified by
+                                                  #  [GDMLFileName]_nowires.gdml
+}
+
+
+csu40L_geo:
+{
+ SurfaceY: 0.0e2
+ Name:     "csu40l" 
+ GDML:     "Geometry/gdml/csu40l.gdml"
+ ROOT:     "Geometry/gdml/csu40l.gdml"
+ DisableWiresInG4: false                         # Has no wires
+}
+
+
+lbne10kt_geo:
+{
+ SurfaceY: 0.0e2                         #in cm, vertical distance to the surface
+ Name:     "lbne10kt"
+ GDML:     "Geometry/gdml/lbne10kt.gdml"
+ ROOT:     "Geometry/gdml/lbne10kt.gdml"
+ DisableWiresInG4: true
+}
+
+lbne34kt_geo:
+{
+ SurfaceY: 147828                        # in cm, vertical distance to the surface
+                                         # 4850 feet to cm. from DocDb-3833
+ Name:     "lbne34kt"
+ GDML:     "Geometry/gdml/lbne34kt.gdml"
+ ROOT:     "Geometry/gdml/lbne34kt.gdml"
+ DisableWiresInG4: true
+}
+
+lbne35t_geo:
+{
+ SurfaceY: 0.0e2                         #in cm, vertical distance to the surface
+ Name:     "lbne35t"
+ GDML:     "Geometry/gdml/lbne35t.gdml"
+ ROOT:     "Geometry/gdml/lbne35t.gdml"
+ DisableWiresInG4: true
+}
+
+
+
+
+END_PROLOG

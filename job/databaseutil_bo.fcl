@@ -1,0 +1,14 @@
+#include "job/databaseutil.fcl"
+
+BEGIN_PROLOG
+
+bo_database: @local::standard_database
+bo_database:               @local::standard_database
+bo_database.DBName:	 "argoneut_dev"
+bo_database.DBUser:	 "argoneut_reader"
+bo_database.Port:		 5457
+bo_database.PassFileName:	 ".apswd"
+bo_database.ShouldConnect: true
+bo_database.TableName:    "bomain_run"
+
+END_PROLOG

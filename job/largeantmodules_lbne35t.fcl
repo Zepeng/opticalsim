@@ -1,0 +1,10 @@
+#include "job/largeantmodules.fcl"
+
+BEGIN_PROLOG
+
+lbne35t_largeant:       @local::standard_largeant
+
+lbne35t_largeantana:       @local::standard_largeantana
+lbne35t_largeantana.SmartStacking: 1
+
+END_PROLOG

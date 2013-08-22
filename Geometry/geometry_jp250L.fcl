@@ -1,0 +1,13 @@
+#include "job/geometry.fcl"
+
+BEGIN_PROLOG
+
+jp250L_geo:
+{
+ SurfaceY: 1.0e2                   #in cm, vertical distance to the surface
+ Name:     "jp250l"
+ GDML:     "Geometry/gdml/jp250L.gdml"
+ ROOT:     "Geometry/gdml/jp250L.gdml"
+}
+
+END_PROLOG

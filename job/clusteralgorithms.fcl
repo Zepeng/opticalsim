@@ -1,0 +1,233 @@
+BEGIN_PROLOG
+
+standard_clustercrawleralg:
+{
+  NumPass:              2  # number of passes through the hit list
+  MaxHitsFit:    [20,   4] # number of hits fitted to a line
+  MinHits:       [10,   5] # minimum size of a cluster
+  NHitsAve:       [1,   1] # number of hits to find the average charge and width  
+                           # at the end of the cluster. NHitsAve should be 1 or 2
+  ChgCut:       [0.6, 0.7] # max fractional hit charge difference for adding hits
+  WidCut:       [0.5, 0.8] # max fractional hit width difference for adding hits
+  ChiCut:         [4., 8.] # stop adding hits to clusters if ChiCut is reached
+  MaxWirSkip:    [25,   2] # max number of wires to skip without adding a hit
+  MinWirAfterSkip:  [1, 1] # min reqd number of consecutive wires with a hit after a skip
+  KinkChiRat:   [1.2,  0.] # Max consecutive chisq increase for the last 3 hits on the cluster
+                           # 0. = no kink check when following
+  KinkAngCut:  [0.15,  0.] # kink angle cut (radians) used to follow and merge
+  DoMerge:   [false, true] # run cluster merging code?
+  TimeDelta:     [2.,  8.] # max time difference for cluster merging
+  TimeDeltaLA:   [2.,  8.] # max time difference for Large Angle cluster merging
+  HitErrFac:           0.3 # hit time error for fitting = fHitErrFac * (hit width)
+  HitWidFac:           2.0 # hit width for tracking = fHitWidFac * (hit width)
+  BEChgRat:            0.0 # Begin/End Charge Ratio to determine cluster direction
+                           # Set to 0 to turn off
+  FudgeBigHits:        5.0 # increase the width of large charge hits so that poorly
+                           # reconstructed hits do not abort crawling. Used only 
+                           # to test for a ADC signal in the projected cluster position
+  PairAngCut:          0.4 # Break clusters for pairs that are less than this
+                           # angle (radians). Set = 0 to turn off
+  CurlyMergeAngCut:   -1.0 # Angle cut for mergin short curly clusters. Set = 0 to turn off
+  DoVertex:           true # make 2D vertices?
+}
+
+standard_houghbasealg:
+{
+  MaxLines:                 50   # The maximum number of Hough lines to look for, 20 had been working!
+  MinHits:                  5
+  SaveAccumulator:          0
+  NumAngleCells:            20000 # The number of angle cells to create for the Hough transform,
+  RhoResolutionFactor:      5    # Was set to 5
+  MaxDistance:              1.0  # 0.1 was working (okay, not really, larger is probably better,
+  MaxSlope:                 80.0 # 80 was working fine previously
+  RhoZeroOutRange:          0
+  ThetaZeroOutRange:        0
+  HitsPerCluster:           1
+  MissedHits:               1    # Was set to 0
+  MissedHitsDistance:       1.0  # 
+  MissedHitsToLineSize:     0.5    # Was set to 0
+  DoFuzzyRemnantMerge:      1    # Tell the algorithm to merge fuzzy cluster remnants into showers or tracks (0-off, 1-on)
+  DoHoughLineMerge:         0    # Turns on Hough line merging (0-off, 1-on)
+  HoughLineMergeAngle:      5    # The maximum angle between slopes of Hough lines to be merged,
+  HoughLineMergeCutoff:     5    # The maximum distance between Hough line endpoints before they can be merged,
+  DoShowerHoughLineMerge:     0  # Turns on parallel Hough line merging (0-off, 1-on)
+  ShowerHoughLineMergeAngle: 90  # The maximum angle between slopes of Hough lines to be merged,
+  ShowerHoughLineMergeCutoff: 10 # The maximum distance between Hough line endpoints before they can be merged,
+  DoShowerHoughLineInterceptMerge: 0 
+  DoChargeAsymAngleMerge:    1    # Turn on cut on product of charge asymmetry and sin of angle between slopes of lines
+  ChargeAsymAngleCut:        0.01 # Cut on product of charge asymmetry and the square of the sin of angle between slopes of lines
+  SigmaChargeAsymAngleCut:   0.01 # Cut on product of charge sigma asymmetry and the sin of angle between slopes of lines
+  ChargeAsymAngleCutoff:     10   # Distance between lines before cut on product of charge asymmetry and sin of angle between slopes of lines
+  ShowerLikenessCut:        0.1  # Cut on shower likeness (the larger the more shower like, the smaller the less shower like)
+  ShowerWidthAngle:         15   # Half of the angle defining how wide a shower is 
+}
+
+standard_endpointalg:
+{
+  TimeBins:            256
+  MaxCorners:          20
+  Gsigma:              1.
+  Window:              5
+  Threshold:           0.1
+  SaveVertexMap:       -1
+}
+
+
+standard_cornerfinderalg:
+{
+  RawDataModuleLabel:           "daq"
+  CalDataModuleLabel:		"caldata"
+  Conversion_algorithm:     "standard"
+  Conversion_function:  "TMath::Gaus(x,0,1)*TMath::Gaus(y,0,1)"
+  Conversion_func_neighborhood: 3
+  Conversion_threshold:		0
+  Conversion_bins_per_input_x:	1
+  Conversion_bins_per_input_y:	1
+  Derivative_method: 		"Sobel" #Noble
+  Derivative_neighborhood:	1 
+  CornerScore_Noble_epsilon:    1e-5
+  CornerScore_Harris_kappa:     0.05
+  CornerScore_neighborhood:	1
+  CornerScore_algorithm:	"Nobel" #Harris
+  MaxSuppress_neighborhood:	3
+  MaxSuppress_threshold:	1000
+  Integral_bin_threshold:       5
+  Integral_fraction_threshold:  0.95
+  
+
+}
+
+standard_dbscanalg:
+{
+  eps:    1.0
+  epstwo: 1.5
+  minPts: 2
+  Method: 0   # 0 -- naive findNeighbor implemention                     
+              # 1 -- findNeigbors with R*-tree                           
+              # 2 -- DBScan from the paper with R*-tree                  
+  Metric: 3   # Which RegionQuery distance metric to use.                
+              # **ONLY APPLIES** if Method is 1 or 2.                    
+              #                                                          
+	      # 0 -- rectangle (no bad channels) **not implemented**     
+	      # 1 -- Manhattan distance (only uses eps, no bad channels) 
+              #                                  **not implemented**     
+	      # 2 -- Eliptical (no bad channels) **not implemented**     
+	      # 3 -- findNeighbors-alike: Elliptical and bad             
+              #                           channel aware (not working)    
+}
+
+standard_fuzzyclusteralg:
+{
+  eps:             1.0
+  epstwo:          1.5
+  minPts:          2
+  Method:          2   # 0 -- naive findNeighbor implemention                     
+                       # 1 -- findNeigbors with R*-tree                           
+                       # 2 -- Use fuzzy clustering                               
+  Metric:          3   # Which RegionQuery distance metric to use.                
+                       # **ONLY APPLIES** if Method is 1 or 2.                    
+                       #                                                          
+	               # 0 -- rectangle (no bad channels) **not implemented**     
+	               # 1 -- Manhattan distance (only uses eps, no bad channels) 
+                       #                                  **not implemented**     
+	               # 2 -- Eliptical (no bad channels) **not implemented**     
+	               # 3 -- findNeighbors-alike: Elliptical and bad             
+                       #                           channel aware (not working)    
+  Fuzzifier:      2    # The fuzzifier (m) needed for fuzzy clustering
+  MaxNumClusters:  5   # The maximum number of clusters to try, needed for fuzzy clustering, was 5
+  Iterations:     10   # The maximum number of iterations to try, needed for fuzzy clustering, was 10
+  MergeCutoff:    100  # The maximum distance between clusters prior to merging,  
+                       #needed for fuzzy clustering, 10 was what was used before
+
+  HoughBaseAlg:    @local::standard_houghbasealg
+  EndPointClusAlg: @local::standard_endpointalg
+}
+
+
+standard_clusterparamsalg:
+ {
+  ChargeCutoffThreshold:    [500,500,1000]
+  SelectBoxSizePar:               10     #distance along axis
+  SelectBoxSizePerp:              3      #distance perpendicular to axis
+  ForceRightGoing:        false
+  HoughBaseAlg:                   @local::standard_houghbasealg
+ }
+ 
+standard_smallclustalg:
+ {
+  RadiusSizePar:   	3	  #radius of circle in "cm"
+  NHitsInClust:		4	  # Max Number of hits in cluster
+  Verbose:			false
+ }
+ 
+
+standard_dbscanalg_fast:        @local::standard_dbscanalg
+standard_dbscanalg_fast.eps:    1.25
+standard_dbscanalg_fast.epstwo: 1.75
+standard_dbscanalg_fast.Method: 2
+
+jp250L_dbscanalg:                  @local::standard_dbscanalg      
+jp250L_fuzzyclusteralg:            @local::standard_fuzzyclusteralg
+jp250L_houghbasealg:               @local::standard_houghbasealg   
+jp250L_houghbasealg.MaxLines:      15
+jp250L_houghbasealg.MinHits:       3
+jp250L_houghbasealg.NumAngleCells: 5000
+jp250L_houghbasealg.MaxDistance:   5.0
+jp250L_endpointalg:                @local::standard_endpointalg
+
+bo_dbscanalg:                   @local::standard_dbscanalg      
+bo_fuzzyclusteralg:             @local::standard_fuzzyclusteralg
+bo_houghbasealg:                @local::standard_houghbasealg   
+bo_houghbasealg.MaxLines:       15
+bo_houghbasealg.MinHits:        3
+bo_houghbasealg.NumAngleCells:  5000
+bo_houghbasealg.MaxDistance:    5.0
+bo_endpointalg:                 @local::standard_endpointalg
+
+argoneut_clustercrawleralg:          @local::standard_clustercrawleralg       
+argoneut_dbscanalg:                  @local::standard_dbscanalg       
+argoneut_fuzzyclusteralg:            @local::standard_fuzzyclusteralg
+argoneut_houghbasealg:               @local::standard_houghbasealg   
+argoneut_houghbasealg.MaxLines:      15                              
+argoneut_houghbasealg.MinHits:       3                               
+argoneut_houghbasealg.NumAngleCells: 5000
+argoneut_houghbasealg.MaxDistance:   5.0
+argoneut_endpointalg:                @local::standard_endpointalg
+argoneut_cornerfinderalg:		      @local::standard_cornerfinderalg
+argoneut_clusterparamsalg:       @local::standard_clusterparamsalg
+argoneut_clusterparamsalg.HoughBaseAlg: @local::argoneut_houghbasealg
+argoneut_clusterparamsalg.ChargeCutoffThreshold:  [200,400]
+argoneut_clusterparamsalg.ForceRightGoing:   true
+argoneut_smallclustalg:	@local::standard_smallclustalg
+
+
+
+microboone_dbscanalg:                         @local::standard_dbscanalg_fast 
+microboone_endpointalg:                       @local::standard_endpointalg    
+microboone_houghbasealg:                      @local::standard_houghbasealg   
+microboone_houghbasealg.MaxLines:             20
+microboone_houghbasealg.MaxDistance:          1.0
+microboone_houghbasealg.MinHits:              5
+microboone_houghbasealg.NumAngleCells:        20000
+microboone_houghbasealg.DoHoughLineMerge:     1
+microboone_fuzzyclusteralg:                   @local::standard_fuzzyclusteralg 
+microboone_fuzzyclusteralg.HoughBaseAlg:      @local::microboone_houghbasealg 
+microboone_cornerfinderalg:		      @local::standard_cornerfinderalg
+microboone_clusterparamsalg:                 @local::standard_clusterparamsalg
+microboone_smallclustalg:	@local::standard_smallclustalg
+
+
+lbne10kt_dbscanalg:    @local::standard_dbscanalg_fast
+lbne10kt_houghbasealg: @local::standard_houghbasealg
+lbne10kt_endpointalg:  @local::standard_endpointalg 
+lbne10kt_fuzzyclusteralg:                   @local::standard_fuzzyclusteralg 
+lbne10kt_fuzzyclusteralg.HoughBaseAlg:      @local::lbne10kt_houghbasealg 
+
+lbne35t_dbscanalg:    @local::standard_dbscanalg_fast
+lbne35t_houghbasealg: @local::standard_houghbasealg
+lbne35t_endpointalg:  @local::standard_endpointalg 
+lbne35t_fuzzyclusteralg:                   @local::standard_fuzzyclusteralg 
+lbne35t_fuzzyclusteralg.HoughBaseAlg:      @local::lbne35t_houghbasealg 
+
+
+END_PROLOG

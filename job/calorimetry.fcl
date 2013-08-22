@@ -1,0 +1,33 @@
+BEGIN_PROLOG
+
+
+
+standard_calorimetryalgdata:
+{
+  CalAmpConstants:  	[ 0.582554e-3 , 1.16594e-3 ]
+  CalAreaConstants:  	[ 0.544391e-2 , 2.0376e-2 ]
+  CaloUseModBox:        false   #use modified Box model recombination correction
+}
+
+standard_calorimetryalgmc:
+{
+  CalAmpConstants:   	[ 0.588726e-3 , 1.18998e-3 ]
+  CalAreaConstants:   	[ 0.773887e-2 , 1.78186e-2 ]
+  CaloUseModBox:        false   #use modified Box model recombination correction
+}
+
+standard_generalcalorimetry:
+{
+ module_type:      "GeneralCalorimetry"
+ TrackModuleLabel: "track"
+ CaloAlg:          @local::standard_calorimetryalgmc
+}
+
+standard_beziercalorimetry:
+{
+ module_type:       "BezierCalorimetry"
+ BTrackModuleLabel: "beziertracker"
+ CaloAlg:           @local::standard_calorimetryalgmc
+}
+
+END_PROLOG

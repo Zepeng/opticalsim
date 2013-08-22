@@ -1,0 +1,14 @@
+#include "job/opticaldetectormodules.fcl"
+
+BEGIN_PROLOG
+
+microboone_simphotoncounter: @local::standard_simphotoncounter
+microboone_opdigi:           @local::standard_opdigi
+microboone_tracktimeassoc:   @local::standard_tracktimeassoc
+microboone_opflashnew:       @local::standard_opflashnew
+
+microboone_opdigiana:        @local::standard_opdigiana
+microboone_ophitana:         @local::standard_ophitana
+microboone_opflashana:       @local::standard_opflashana
+
+END_PROLOG

@@ -1,0 +1,15 @@
+#include "job/detectorproperties.fcl"
+
+BEGIN_PROLOG
+
+bo_detproperties:             @local::standard_detproperties
+#  comment the next three lines for Short-Bo data
+bo_detproperties.SamplingRate:      395.5        # in ns         
+bo_detproperties.NumberTimeSamples: 4096         # ticks of the clock per readout frame
+bo_detproperties.ReadOutWindowSize: 4096
+bo_detproperties.TriggerOffset:     101          # 40 us
+bo_detproperties.TimeOffsetU: 0
+bo_detproperties.TimeOffsetV: 0
+bo_detproperties.TimeOffsetZ: 0
+
+END_PROLOG

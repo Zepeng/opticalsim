@@ -1,0 +1,52 @@
+BEGIN_PROLOG
+
+standard_database:
+{
+  DBHostName:		"fnalpgsdev.fnal.gov"
+  DBName:		"uboonedaq_dev"
+  DBUser:		"uboonedaq_reader"
+  Port:			5436
+  PassFileName:		".pswd"
+  ToughErrorTreatment:  false                #if true, throw cet::exception at DB connection error
+  ShouldConnect:        false
+  TableName:    	"main_run"
+}
+
+bo_database:               @local::standard_database
+bo_database.DBName:	 "argoneut_dev"
+bo_database.DBUser:	 "argoneut_reader"
+bo_database.Port:		 5457
+bo_database.PassFileName:	 ".apswd"
+bo_database.ShouldConnect: true
+bo_database.TableName:    "bomain_run"
+
+jp250L_database: @local::standard_database
+
+argoneut_database:               @local::standard_database
+argoneut_database.DBName:	 "argoneut_dev"
+argoneut_database.DBUser:	 "argoneut_reader"
+argoneut_database.Port:		 5457
+argoneut_database.PassFileName:	 ".apswd"
+argoneut_database.ShouldConnect: true
+
+microboone_database:               @local::standard_database
+microboone_database.PassFileName:  ".upswd"
+microboone_database.DBName:	 "uboone_dev"
+microboone_database.DBUser:	 "uboone_reader"
+microboone_database.ShouldConnect: true
+
+lbne35t_database:               @local::standard_database
+lbne35t_database.DBName:	"lbne_dev"
+lbne35t_database.DBUser:	"lbne_reader"
+lbne35t_database.Port:	        5438
+lbne35t_database.PassFileName:  ".lpswd"
+lbne35t_database.ShouldConnect: true
+
+lbne10kt_database:               @local::standard_database
+lbne10kt_database.DBName:	 "lbne_dev"
+lbne10kt_database.DBUser:	 "lbne_reader"
+lbne10kt_database.Port:	         5438
+lbne10kt_database.PassFileName:  ".lpswd"
+lbne10kt_database.ShouldConnect: true
+
+END_PROLOG
